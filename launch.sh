@@ -16,5 +16,5 @@ touch /home/claudio/.android/repositories.cfg
   $baseDir/$sdkPath/tools/bin/avdmanager create avd --name test --package "system-images;android-$version;google_apis;x86" --device "Nexus 5X"
 fi
 
-$baseDir$sdkPath/tools/bin/sdkmanager --update
+$baseDir/$sdkPath/tools/bin/sdkmanager --update
 exec $baseDir/$sdkPath/tools/emulator @test > /dev/null &
