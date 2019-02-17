@@ -1,11 +1,14 @@
-export JAVA_HOME=/home/claudio/Downloads/apps/jdk1.8.0_201
-
 baseDir=$(dirname "$0")
 sdkTools=sdk-tools-linux-4333796
 sdkPath=sdk-tools/$sdkTools
 version=28
 
 export ANDROID_SDK_ROOT=$baseDir/$sdkPath
+
+if [ -z "$JAVA_HOME" ]; then
+  echo "JAVA_HOME not found"
+  exit
+fi
 
 if [ ! -d "$sdkPath" ]; then
   wget -P sdk-tools https://dl.google.com/android/repository/$sdkTools.zip
