@@ -4,6 +4,7 @@ baseDir=$(dirname "$0")
 sdkTools=sdk-tools-linux-4333796
 sdkPath=sdk-tools/$sdkTools
 version=28
+
 export ANDROID_SDK_ROOT=$baseDir/$sdkPath
 
 if [ ! -d "$sdkPath" ]; then
