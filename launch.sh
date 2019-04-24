@@ -25,12 +25,12 @@ $sdkPath/tools/bin/sdkmanager --update
 exec $sdkPath/emulator/emulator @test > /dev/null &
 
 curDateSecs=$(date +%s)
-lastUpdate=$(cat last-update)
+lastUpdate=$(cat $baseDir/last-update)
 checkUpdatePeriod=$(expr 86400 \* 90) # 90 days
 updateEnding=$(expr $lastUpdate + $checkUpdatePeriod)
 
 if [ "$curDateSecs" -gt "$updateEnding" ]; then
   echo "Check sdk-tools-linux and sdk version updates"
   echo "This message will be printed once"
-  date +%s > last-update
+  date +%s > $baseDir/last-update
 fi
