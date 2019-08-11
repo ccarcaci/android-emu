@@ -3,8 +3,6 @@ sdkTools=sdk-tools-darwin-4333796
 sdkPath=$baseDir/sdk-tools/$sdkTools
 version=29
 
-echo "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis;x86"
-
 if [ -z "$JAVA_HOME" ]; then
   echo "JAVA_HOME not found"
   exit
