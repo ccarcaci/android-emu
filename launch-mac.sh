@@ -1,9 +1,9 @@
 baseDir=$(dirname "$0")
-sdkTools=sdk-tools-linux-4333796
+sdkTools=sdk-tools-darwin-4333796
 sdkPath=$baseDir/sdk-tools/$sdkTools
-version=28
+version=29
 
-export ANDROID_SDK_ROOT=$sdkPath
+echo "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis;x86"
 
 if [ -z "$JAVA_HOME" ]; then
   echo "JAVA_HOME not found"
@@ -16,10 +16,12 @@ if [ ! -d "$sdkPath" ]; then
   rm $sdkPath.zip
 
   yes | $sdkPath/tools/bin/sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis;x86"
-touch /home/claudio/.android/repositories.cfg
+  touch $HOME/.android/repositories.cfg
   $sdkPath/tools/bin/avdmanager delete avd --name test
   $sdkPath/tools/bin/avdmanager create avd --name test --package "system-images;android-$version;google_apis;x86" --device "Nexus 5X"
 fi
+
+export ANDROID_SDK_ROOT=$sdkPath
 
 $sdkPath/tools/bin/sdkmanager --update
 exec $sdkPath/emulator/emulator @test > /dev/null &
