@@ -15,14 +15,14 @@ if [ ! -d "$sdkPath" ]; then
 
   yes | $sdkPath/tools/bin/sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis;x86"
   touch $HOME/.android/repositories.cfg
-  $sdkPath/tools/bin/avdmanager delete avd --name test
-  $sdkPath/tools/bin/avdmanager create avd --name test --package "system-images;android-$version;google_apis;x86" --device "Nexus 5X"
+  $sdkPath/tools/bin/avdmanager delete avd --name "Nexus5X"
+  $sdkPath/tools/bin/avdmanager create avd --name "Nexus5X" --package "system-images;android-$version;google_apis;x86" --device "Nexus 5X"
 fi
 
 export ANDROID_SDK_ROOT=$sdkPath
 
 $sdkPath/tools/bin/sdkmanager --update
-exec $sdkPath/emulator/emulator @test > /dev/null &
+exec $sdkPath/emulator/emulator @Nexus5X > /dev/null &
 
 curDateSecs=$(date +%s)
 lastUpdate=$(cat $baseDir/last-update)
