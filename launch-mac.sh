@@ -14,7 +14,7 @@ if [ ! -d "$sdkPath" ]; then
   rm $sdkPath.zip
 fi
 
-if [ $1 -eq "--reinstall-device" ]; then
+if [ "$1" == "--reinstall-device" ]; then
   yes | $sdkPath/tools/bin/sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis;x86"
   touch $HOME/.android/repositories.cfg
   $sdkPath/tools/bin/avdmanager delete avd --name "Pixel"
