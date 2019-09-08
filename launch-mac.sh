@@ -12,17 +12,19 @@ if [ ! -d "$sdkPath" ]; then
   wget -P sdk-tools https://dl.google.com/android/repository/$sdkTools.zip
   unzip $sdkPath.zip -d $sdkPath
   rm $sdkPath.zip
+fi
 
+if [ $1 -eq "--reinstall-device" ]; then
   yes | $sdkPath/tools/bin/sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis;x86"
   touch $HOME/.android/repositories.cfg
-  $sdkPath/tools/bin/avdmanager delete avd --name "Nexus5X"
-  $sdkPath/tools/bin/avdmanager create avd --name "Nexus5X" --package "system-images;android-$version;google_apis;x86" --device "Nexus 5X"
+  $sdkPath/tools/bin/avdmanager delete avd --name "Pixel"
+  $sdkPath/tools/bin/avdmanager create avd --name "Pixel" --package "system-images;android-$version;google_apis;x86" --device "pixel"
 fi
 
 export ANDROID_SDK_ROOT=$sdkPath
 
 $sdkPath/tools/bin/sdkmanager --update
-exec $sdkPath/emulator/emulator @Nexus5X > /dev/null &
+exec $sdkPath/emulator/emulator @Pixel > /dev/null &
 
 curDateSecs=$(date +%s)
 lastUpdate=$(cat $baseDir/last-update)
