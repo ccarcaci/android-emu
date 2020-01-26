@@ -35,6 +35,8 @@ if [ "$curDateSecs" -gt "$updateEnding" ]; then
   echo "*************************************************"
   echo "* Check sdk-tools-linux and sdk version updates *"
   echo "* This message will be printed once             *"
+  echo "* Link below                                    *"
   echo "*************************************************"
+  echo "https://developer.android.com/studio/?gclid=CjwKCAiAjrXxBRAPEiwAiM3DQpEZ4I-DSCnFic2f13Xdt8zdfxUcmi118B8HJNF5zuA-ioSfvws5BBoCW2IQAvD_BwE#command-tools"
   date +%s > $baseDir/last-update
 fi
