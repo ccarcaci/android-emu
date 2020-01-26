@@ -15,10 +15,10 @@ if [ ! -d "$sdkPath" ]; then
 fi
 
 if [ "$1" == "--reinstall-device" ]; then
-  yes | $sdkPath/tools/bin/sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis;x86"
+  yes | $sdkPath/tools/bin/sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis_playstore;x86_64"
   touch $HOME/.android/repositories.cfg
   $sdkPath/tools/bin/avdmanager delete avd --name "Pixel"
-  $sdkPath/tools/bin/avdmanager create avd --name "Pixel" --package "system-images;android-$version;google_apis;x86" --device "pixel"
+  $sdkPath/tools/bin/avdmanager create avd --name "Pixel" --package "system-images;android-$version;google_apis_playstore;x86_64" --device "pixel"
 fi
 
 export ANDROID_SDK_ROOT=$sdkPath
@@ -32,7 +32,9 @@ checkUpdatePeriod=$(expr 86400 \* 90) # 90 days
 updateEnding=$(expr $lastUpdate + $checkUpdatePeriod)
 
 if [ "$curDateSecs" -gt "$updateEnding" ]; then
-  echo "Check sdk-tools-linux and sdk version updates"
-  echo "This message will be printed once"
+  echo "*************************************************"
+  echo "* Check sdk-tools-linux and sdk version updates *"
+  echo "* This message will be printed once             *"
+  echo "*************************************************"
   date +%s > $baseDir/last-update
 fi
