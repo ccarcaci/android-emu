@@ -24,7 +24,7 @@ fi
 export PATH=$PATH:$basePath/cmdline-tools/latest/bin:$basePath/emulator
 
 if [ "$1" == "--reinstall-device" ]; then
-  yes | sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;google_apis_playstore;x86_64"
+  yes | sdkmanager "platform-tools" "platforms;android-$version" "emulator" "system-images;android-$version;default;x86_64"
   touch $HOME/.android/repositories.cfg
   avdmanager delete avd --name "Pixel" || true
   avdmanager create avd --name "Pixel" --package "system-images;android-$version;google_apis_playstore;x86_64" --device "pixel"
